@@ -2,12 +2,12 @@
 SmartDots Algorithm - By Peter Cresswell
 
 sketch
-Central script controlling the biome
+Central script controlling the sketch
 */
 
 function setup() {
 	settings = new Settings();
-	createCanvas(700, 700);
+	createCanvas(settings.WinWidth, settings.WinHeight);
 }
 
 function draw() {
