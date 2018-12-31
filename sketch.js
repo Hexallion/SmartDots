@@ -7,22 +7,21 @@ Central script controlling the sketch
 
 function setup() {
 
-	//console.log("In Setup")
-	//Initialtes objects
-	dot = new Dot(Settings.startX, Settings.startY);
-	population = new Population(Settings.populationSize);
+    //console.log("In Setup")
+    //Initialtes objects
+    population = new Population(Settings.populationSize);
 
-	//Setup canvas and other variables
-	frameRate(Settings.fps)
-	createCanvas(Settings.canWidth, Settings.canHeight);
+    //Setup canvas and other variables
+    frameRate(Settings.fps)
+    createCanvas(Settings.canWidth, Settings.canHeight);
 }
 
 function draw() {
-	noStroke();
-	background(255, 255, 0)
+    noStroke();
+    background(255, 255, 0)
 
-	//Draws all dots
-	for(let i of population.dots){
-		ellipse(i.PVector.x, i.PVector.y, Settings.dotRaidus, Settings.dotRaidus).fill(Settings.dotColour)
-	}
+    //Draws all dots
+    for (let i of population.dots) {
+        ellipse(i.PVector.x, i.PVector.y, Settings.dotRaidus, Settings.dotRaidus).fill(Settings.dotColour)
+    }
 }
