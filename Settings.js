@@ -7,15 +7,15 @@ Static object containing the settings.
 
 var Settings = {
 	//Window settings
-	CanWidth:700,
-	CanHeight:700,
-	CanColour: 'grey',
+	canWidth:700,
+	canHeight:700,
+	canColour: 'grey',
 	fps:60,
 	//----------------------------------
 
 	//Dot settings
-	StartX: 700 / 2,
-	StartY: 700 / 2,
-	DotRaidus: 50,
-	DotColour: 'black'
+	startX: 700 / 2,
+	startY: 700 / 2,
+	dotRaidus: 50,
+	dotColour: 'black'
 };
