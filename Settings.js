@@ -2,10 +2,20 @@
 SmartDots Algorithm - By Peter Cresswell
 
 Settings
-Central script controlling the biome
+Static object containing the settings.
 */
 
-function Settings(){
-  this.WinWidth = 700;
-  this.WinHeight = 700;
-}
+var Settings = {
+	//Window settings
+	CanWidth:700,
+	CanHeight:700,
+	CanColour: 'grey',
+	fps:60,
+	//----------------------------------
+
+	//Dot settings
+	StartX: 700 / 2,
+	StartY: 700 / 2,
+	DotRaidus: 50,
+	DotColour: 'black'
+};

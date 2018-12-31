@@ -6,13 +6,16 @@ Central script controlling the sketch
 */
 
 function setup() {
-	settings = new Settings();
-	dot = new Dot(settings.WinWidth/2, settings.WinHeight - 100);
-	createCanvas(settings.WinWidth, settings.WinHeight);
+	//Initialtes objects
+	dot = new Dot(Settings.StartX, Settings.StartY);
+
+	//Setup canvas and other variables
+	frameRate(Settings.fps)
+	createCanvas(Settings.CanWidth, Settings.CanHeight);
 }
 
 function draw() {
 	noStroke();
 	background(255, 255, 0)
-	ellipse(dot.PVector.x, dot.PVector.y, 50, 50).fill('black')
+	ellipse(dot.PVector.x, dot.PVector.y, Settings.DotRaidus, Settings.DotRaidus).fill(Settings.DotColour)
 }

@@ -5,6 +5,6 @@ Dot
 Dot Object, The object that learns
 */
 
-function Dot(startx, starty){
-  this.PVector = createVector(startx, starty);
+function Dot(StartX, StartY){
+	  this.PVector = createVector(StartX, StartY);
 }
