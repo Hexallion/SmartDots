@@ -6,8 +6,11 @@ Central script controlling the sketch
 */
 
 function setup() {
+
+	//console.log("In Setup")
 	//Initialtes objects
 	dot = new Dot(Settings.startX, Settings.startY);
+	population = new Population(Settings.populationSize);
 
 	//Setup canvas and other variables
 	frameRate(Settings.fps)
@@ -17,5 +20,9 @@ function setup() {
 function draw() {
 	noStroke();
 	background(255, 255, 0)
-	ellipse(dot.PVector.x, dot.PVector.y, Settings.dotRaidus, Settings.dotRaidus).fill(Settings.dotColour)
+
+	//Draws all dots
+	for(let i of population.dots){
+		ellipse(i.PVector.x, i.PVector.y, Settings.dotRaidus, Settings.dotRaidus).fill(Settings.dotColour)
+	}
 }
