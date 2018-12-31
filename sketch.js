@@ -9,19 +9,20 @@ function setup() {
 
     //console.log("In Setup")
     //Initialtes objects
-    population = new Population(Settings.populationSize);
+    Population = new Population(Settings.populationSize);
 
     //Setup canvas and other variables
-    frameRate(Settings.fps)
+    frameRate(Settings.fps);
     createCanvas(Settings.canWidth, Settings.canHeight);
 }
 
 function draw() {
     noStroke();
-    background(255, 255, 0)
+    background(255, 255, 0);
 
+    Population.NextStep();
     //Draws all dots
-    for (let i of population.dots) {
-        ellipse(i.PVector.x, i.PVector.y, Settings.dotRaidus, Settings.dotRaidus).fill(Settings.dotColour)
+    for (let i of Population.Dots) {
+        ellipse(i.PVector.x, i.PVector.y, Settings.dotRaidus, Settings.dotRaidus).fill(Settings.dotColour);
     }
 }

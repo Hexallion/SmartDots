@@ -10,11 +10,12 @@ var Settings = {
     canWidth: 700,
     canHeight: 700,
     canColour: 'grey',
-    fps: 60,
+    fps: 10,
     //----------------------------------
 
     //Population settings
-    populationSize: 1,
+    populationSize: 10,
+    lifeSpan: 200,
     //----------------------------------
 
     //Dot settings
