@@ -33,13 +33,4 @@ function Population(populationSize) {
         }
     }
     //--------------------------------------------------------------------------------------------
-
-    //Calculates the sum of all the fitnesses of the dots
-    this.FitnessSum = function() {
-        this.CalculateFitness();
-        let total = 0;
-        for (let dot of this.Dots) {
-            total += dot.fitness;
-        }
-    }
 }

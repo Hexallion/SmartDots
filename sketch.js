@@ -53,10 +53,6 @@ function NextStep() {
         Generations[Generations.length - 1].NextStep();
     }
     else {
-        Generations[Generations.length - 1].CalculateFitness();
-        for (let i of Generations[Generations.length - 1].Dots) {
-            console.log(i.fitness);
-        }
         NewGeneration();
     }
 }
@@ -69,12 +65,14 @@ function NewGeneration() {
     let MatingPool = ProportionalSelection(Generations[Generations.length - 1]);
     console.log('\tCompleted Selection');
 
-    let NewPopulation = OnePointCrossover(MatingPool);
+    let NewDots = OnePointCrossover(MatingPool);
     console.log('\tCompleted Crossover');
 
-    let NewGeneration = Mutation(NewPopulation)
+    let MutatedNewDots = Mutation(NewDots)
     console.log('\tCompleted Mutation');
 
+    let NewGeneration = new Population();
+    NewGeneration.Dots = MutatedNewDots;
     //Resetting dot positions and current step
     NewGeneration.currentStep = 0;
     for (let dot of NewGeneration.Dots) {
