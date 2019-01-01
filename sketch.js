@@ -69,12 +69,14 @@ function NewGeneration() {
     let MatingPool = ProportionalSelection(Generations[Generations.length - 1]);
     console.log('\tCompleted Selection');
 
-    let NewPopulation = OnePointCrossover(MatingPool);
+    let NewDots = OnePointCrossover(MatingPool);
     console.log('\tCompleted Crossover');
 
-    let NewGeneration = Mutation(NewPopulation)
+    let MutatedNewDots = Mutation(NewDots)
     console.log('\tCompleted Mutation');
 
+    let NewGeneration = new Population();
+    NewGeneration.Dots = MutatedNewDots;
     //Resetting dot positions and current step
     NewGeneration.currentStep = 0;
     for (let dot of NewGeneration.Dots) {
