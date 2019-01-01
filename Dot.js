@@ -16,8 +16,7 @@ function Dot(startX, startY) {
 
     //Applys the force to the dot.
     this.ApplyForce = function(force) {
-        this.AVector = createVector(0, 0);
-        this.AVector.add(force);
+        this.AVector = force;
         this.VVector.add(this.AVector);
         this.PVector.add(this.VVector);
     }
