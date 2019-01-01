@@ -6,16 +6,17 @@ Population Object, The container which contains all of the individual dots
 */
 
 function Population(populationSize) {
+
+    //Sets up the population with a population of dots
     this.Dots = [];
     this.currentStep = 0;
-    //console.log("In Population");
-
     //Generates the array of dots
     for (let i = 0; i < populationSize; i++) {
         this.Dots.push(new Dot(Settings.startX, Settings.startY));
     }
+    //--------------------------------------------------------------------------------------------
 
-
+    //Applys the next dna action
     this.NextStep = function() {
         for (let dot of this.Dots) {
             dot.ApplyForce(dot.Brain.dna[this.currentStep]);
@@ -23,10 +24,13 @@ function Population(populationSize) {
         this.currentStep++;
         //console.log(this.currentStep);
     }
+    //--------------------------------------------------------------------------------------------
 
+    //Calculates the fitness of all dots at the end of their life
     this.CalculateFitness = function() {
         for (let dot of this.Dots) {
             dot.Fitness();
         }
     }
+    //--------------------------------------------------------------------------------------------
 }
