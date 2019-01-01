@@ -22,6 +22,13 @@ var Settings = {
     startX: 700 / 2,
     startY: 700 / 2 + 200,
     dotRaidus: 10,
-    dotColour: 'black'
+    dotColour: 'black',
+    //----------------------------------
+
+    //Goal Settings
+    goalX: 700 / 2,
+    goalY: 100,
+    goalRadius: 25,
+    goalColour: 'blue'
     //----------------------------------
 };

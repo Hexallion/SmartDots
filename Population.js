@@ -8,7 +8,7 @@ Population Object, The container which contains all of the individual dots
 function Population(populationSize) {
     this.Dots = [];
     this.currentStep = 0;
-    console.log("In Population");
+    //console.log("In Population");
 
     //Generates the array of dots
     for (let i = 0; i < populationSize; i++) {
@@ -21,6 +21,12 @@ function Population(populationSize) {
             dot.ApplyForce(dot.Brain.dna[this.currentStep]);
         }
         this.currentStep++;
-        console.log(this.currentStep);
+        //console.log(this.currentStep);
+    }
+
+    this.CalculateFitness = function() {
+        for (let dot of this.Dots) {
+            dot.Fitness();
+        }
     }
 }
