@@ -2,7 +2,7 @@
 SmartDots Algorithm - By Peter Cresswell
 
 Population
-Population Object, The container wich contains all of the individual dots
+Population Object, The container which contains all of the individual dots
 */
 
 function Population(populationSize) {
@@ -20,7 +20,7 @@ function Population(populationSize) {
         for (let dot of this.Dots) {
             dot.ApplyForce(dot.Brain.dna[this.currentStep]);
         }
-
         this.currentStep++;
+        console.log(this.currentStep);
     }
 }
