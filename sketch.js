@@ -9,7 +9,7 @@ Central script controlling the sketch
 function setup() {
     //Initialtes objects
     Generations = [];
-    NewGeneration();
+    Generations.push(new Population(Settings.populationSize));
     Goal = new Goal();
 
     //Setup canvas and other variables
@@ -64,6 +64,23 @@ function NextStep() {
 
 //Adds a new generation
 function NewGeneration() {
-    let NewPopulation = new Population(Settings.populationSize)
-    Generations.push(NewPopulation);
+    console.log('Generating new generation');
+
+    let MatingPool = ProportionalSelection(Generations[Generations.length - 1]);
+    console.log('\tCompleted Selection');
+
+    let NewPopulation = OnePointCrossover(MatingPool);
+    console.log('\tCompleted Crossover');
+
+    let NewGeneration = Mutation(NewPopulation)
+    console.log('\tCompleted Mutation');
+
+    //Resetting dot positions and current step
+    NewGeneration.currentStep = 0;
+    for (let dot of NewGeneration.Dots) {
+        dot.PVector = new createVector(Settings.startX, Settings.startY);
+        dot.VVector = new createVector(0, 0);
+    }
+    console.log('\tFinnished resetting dot status')
+    Generations.push(NewGeneration);
 }
