@@ -26,7 +26,7 @@ function draw() {
 
     //Draws goal
     fill(Goal.goalColour);
-    ellipse(Goal.goalVector.x, Goal.goalVector.y, Goal.goalRadius, Goal.goalRadius);
+    rect(Goal.goalVector.x, Goal.goalVector.y, Goal.goalSize, Goal.goalSize);
     //--------------------------------------------------------------------------------------------
 
     //Draws all dots
@@ -36,7 +36,6 @@ function draw() {
     }
     //--------------------------------------------------------------------------------------------
 
-    let g = 8;
     //Draws obstacles
     for (let obstacle of Obstacles.obstacles) {
         fill(Settings.obstacleColour);

@@ -47,7 +47,13 @@ function Population(populationSize) {
     //--------------------------------------------------------------------------------------------
 
     this.intersectsGoal = function(Dot) {
-
+        if (Dot.PVector.x > Goal.goalVector.x && Dot.PVector.x < Goal.goalVector.x + Goal.goalSize) {
+            //check if within y bounds
+            if (Dot.PVector.y > Goal.goalVector.y && Dot.PVector.y < Goal.goalVector.y + Goal.goalSize) {
+                Dot.status = 'Goal';
+                Dot.dotColour = 'green';
+            }
+        }
     }
 
     this.intersectsObstacles = function(Dot) {

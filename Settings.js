@@ -15,7 +15,7 @@ var Settings = {
 
     //Population settings
     populationSize: 100,
-    lifeSpan: 200,
+    lifeSpan: 250,
     mutationRate: 0.5,
     //----------------------------------
 
@@ -27,9 +27,9 @@ var Settings = {
     //----------------------------------
 
     //Goal Settings
-    goalX: 700 / 2,
+    goalX: 700 / 2 - 15,
     goalY: 100,
-    goalRadius: 25,
+    goalSize: 30,
     goalColour: 'blue',
     //----------------------------------
 
