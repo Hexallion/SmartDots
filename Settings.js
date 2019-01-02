@@ -30,6 +30,14 @@ var Settings = {
     goalX: 700 / 2,
     goalY: 100,
     goalRadius: 25,
-    goalColour: 'blue'
+    goalColour: 'blue',
+    //----------------------------------
+
+    //Obstacle Settings
+    obstacleX: 700 / 2 - 150,
+    obstacleY: 700 / 2 - 75,
+    obstacleWidth: 300,
+    obstacleHeight: 75,
+    obstacleColour: 'black'
     //----------------------------------
 };

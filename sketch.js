@@ -11,6 +11,7 @@ function setup() {
     Generations = [];
     Generations.push(new Population(Settings.populationSize));
     Goal = new Goal();
+    Obstacles = new Obstacles();
 
     //Setup canvas and other variables
     frameRate(Settings.fps);
@@ -32,6 +33,14 @@ function draw() {
     for (let i of Generations[Generations.length - 1].Dots) {
         fill(Settings.dotColour);
         ellipse(i.PVector.x, i.PVector.y, Settings.dotRaidus, Settings.dotRaidus);
+    }
+    //--------------------------------------------------------------------------------------------
+
+    let g = 8;
+    //Draws obstacles
+    for (let obstacle of Obstacles.obstacles) {
+        fill(Settings.obstacleColour);
+        rect(obstacle.PVector.x, obstacle.PVector.y, obstacle.width, obstacle.height);
     }
     //--------------------------------------------------------------------------------------------
 
