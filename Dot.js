@@ -25,7 +25,8 @@ function Dot(startX, startY) {
 
     //Calculates the fitness of the dot.
     this.Fitness = function() {
-        this.fitness = this.PVector.dist(Goal.goalVector);
+        this.temp = this.PVector.dist(Goal.goalVector);
+        this.fitness = (1 / this.temp) * 10000;
     }
     //--------------------------------------------------------------------------------------------
 
