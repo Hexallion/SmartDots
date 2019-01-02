@@ -64,6 +64,11 @@ function Population(populationSize) {
                 //check if within y bounds
                 if (Dot.PVector.y > obstacle.PVector.y && Dot.PVector.y < obstacle.PVector.y + obstacle.height) {
                     Dot.status = 'Dead';
+                    if (Dot.alreadyDead == false) {
+                        Dot.alreadyDead = true;
+                        var oof = new Audio("assets/oof.mp3");
+                        oof.play();
+                    }
                     Dot.dotColour = 'red';
                 }
             }
