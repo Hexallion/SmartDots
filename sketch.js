@@ -53,10 +53,6 @@ function NextStep() {
         Generations[Generations.length - 1].NextStep();
     }
     else {
-        Generations[Generations.length - 1].CalculateFitness();
-        for (let i of Generations[Generations.length - 1].Dots) {
-            console.log(i.fitness);
-        }
         NewGeneration();
     }
 }
