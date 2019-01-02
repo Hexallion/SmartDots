@@ -14,8 +14,8 @@ var Settings = {
     //----------------------------------
 
     //Population settings
-    populationSize: 10,
-    lifeSpan: 100,
+    populationSize: 100,
+    lifeSpan: 200,
     mutationRate: 0.5,
     //----------------------------------
 

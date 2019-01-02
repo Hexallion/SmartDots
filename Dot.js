@@ -12,6 +12,7 @@ function Dot(startX, startY) {
     this.AVector = createVector(0, 0);
     this.fitness = 0;
     this.dotColour = Settings.dotColour;
+    this.status = 'Alive';
     this.Brain = new Brain(Settings.lifeSpan);
     //--------------------------------------------------------------------------------------------
 

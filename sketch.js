@@ -97,11 +97,12 @@ function NewGeneration() {
         NewGeneration.Dots[NewGeneration.Dots.length - 1] = bestDot;
     }
 
-    //Resetting dot positions and current step
+    //Resetting dot values
     NewGeneration.currentStep = 0;
     for (let dot of NewGeneration.Dots) {
         dot.PVector = new createVector(Settings.startX, Settings.startY);
         dot.VVector = new createVector(0, 0);
+        dot.status = 'Alive';
     }
     console.log('\tFinnished resetting dot status')
     Generations.push(NewGeneration);

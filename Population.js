@@ -19,7 +19,19 @@ function Population(populationSize) {
     //Applys the next dna action
     this.NextStep = function() {
         for (let dot of this.Dots) {
-            dot.ApplyForce(dot.Brain.dna[this.currentStep]);
+            switch (dot.status) {
+                case 'Alive':
+                    this.intersectsObstacles(dot);
+                    this.intersectsGoal(dot);
+                    dot.ApplyForce(dot.Brain.dna[this.currentStep]);
+                    break;
+
+                case 'Dead':
+                    break;
+
+                case 'Goal':
+                    break;
+            }
         }
         this.currentStep++;
         //console.log(this.currentStep);
@@ -33,4 +45,22 @@ function Population(populationSize) {
         }
     }
     //--------------------------------------------------------------------------------------------
+
+    this.intersectsGoal = function(Dot) {
+
+    }
+
+    this.intersectsObstacles = function(Dot) {
+        //For every obstacle
+        for (let obstacle of Obstacles.obstacles) {
+            //check if within x bounds
+            if (Dot.PVector.x > obstacle.PVector.x && Dot.PVector.x < obstacle.PVector.x + obstacle.width) {
+                //check if within y bounds
+                if (Dot.PVector.y > obstacle.PVector.y && Dot.PVector.y < obstacle.PVector.y + obstacle.height) {
+                    Dot.status = 'Dead';
+                    Dot.dotColour = 'red';
+                }
+            }
+        }
+    }
 }
