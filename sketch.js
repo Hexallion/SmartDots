@@ -61,6 +61,9 @@ function NextStep() {
         Generations[Generations.length - 1].NextStep();
     }
     else {
+        if (Generations.length > 30) {
+            location.reload();
+        }
         NewGeneration();
     }
 }
