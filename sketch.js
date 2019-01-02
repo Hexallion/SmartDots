@@ -62,7 +62,7 @@ function NextStep() {
 function NewGeneration() {
     console.log('Generating new generation');
 
-    let MatingPool = ProportionalSelection(Generations[Generations.length - 1].Dots);
+    let MatingPool = ProportionalSelection(Generations[Generations.length - 1]);
     console.log('\tCompleted Selection');
 
     let NewDots = OnePointCrossover(MatingPool);
