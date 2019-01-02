@@ -31,7 +31,7 @@ function draw() {
 
     //Draws all dots
     for (let i of Generations[Generations.length - 1].Dots) {
-        fill(Settings.dotColour);
+        fill(i.dotColour);
         ellipse(i.PVector.x, i.PVector.y, Settings.dotRaidus, Settings.dotRaidus);
     }
     //--------------------------------------------------------------------------------------------
@@ -82,6 +82,21 @@ function NewGeneration() {
 
     let NewGeneration = new Population();
     NewGeneration.Dots = MutatedNewDots;
+
+    //Adding Elitism
+    {
+        let bestFitness = 0;
+        let bestDot;
+        for (let dot of Generations[Generations.length - 1].Dots) {
+            if (dot.fitness > bestFitness) {
+                bestFitness = dot.fitness;
+                bestDot = dot;
+            }
+        }
+        bestDot.dotColour = 'yellow';
+        NewGeneration.Dots[NewGeneration.Dots.length - 1] = bestDot;
+    }
+
     //Resetting dot positions and current step
     NewGeneration.currentStep = 0;
     for (let dot of NewGeneration.Dots) {

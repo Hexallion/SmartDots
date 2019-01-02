@@ -11,6 +11,7 @@ function Dot(startX, startY) {
     this.VVector = createVector(0, 0);
     this.AVector = createVector(0, 0);
     this.fitness = 0;
+    this.dotColour = Settings.dotColour;
     this.Brain = new Brain(Settings.lifeSpan);
     //--------------------------------------------------------------------------------------------
 
