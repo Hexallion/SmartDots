@@ -18,6 +18,7 @@ function Dot(startX, startY) {
     this.ApplyForce = function(force) {
         this.AVector = force;
         this.VVector.add(this.AVector);
+        this.VVector.limit(5);
         this.PVector.add(this.VVector);
     }
     //--------------------------------------------------------------------------------------------
