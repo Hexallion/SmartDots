@@ -38,6 +38,10 @@ var Settings = {
     obstacleY: 700 / 2 - 75,
     obstacleWidth: 300,
     obstacleHeight: 75,
-    obstacleColour: 'black'
+    obstacleColour: 'black',
+    //----------------------------------
+
+    //Selection Settings
+    tournamentParticipents: 10
     //----------------------------------
 };

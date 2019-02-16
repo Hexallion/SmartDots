@@ -7,7 +7,7 @@ Selection functions, collection of different selection styles
 
 function ProportionalSelection(Population) {
     console.time("ProportionalSelection");
-    //let Calculate fitnesses of population
+    //Calculate fitnesses of population
     Population.CalculateFitness();
 
     //Adds dot index to array proportional to their fitness
@@ -37,10 +37,10 @@ function ProportionalSelection(Population) {
 
 function RankingSelection(Population) {
     console.time("RankingSelection");
-    //let Calculate fitnesses of population
+    //Calculate fitnesses of population
     Population.CalculateFitness();
 
-    //Sorts array by fitness value
+    //Sorts array by fitness value decending order
     Population.Dots = Population.Dots.sort(function(a, b) {
         return b.fitness - a.fitness
     });
@@ -68,5 +68,35 @@ function RankingSelection(Population) {
         MatingPool.push(tempDot);
     }
     console.timeEnd("RankingSelection");
+    return MatingPool;
+}
+
+function TournamentSelection(Population) {
+    console.time("TournamentSelection");
+    //Calculate fitnesses of population
+    Population.CalculateFitness();
+
+    //Number of tournaments equal to the nuber of parents needed
+    let MatingPool = [];
+    for (let i = 0; i < Settings.populationSize; i++) {
+        let participents = [];
+        for (let i = 0; i < Settings.tournamentParticipents; i++) {
+            participents.push(Population.Dots[Math.floor(Math.random() * Population.Dots.length)]);
+        }
+
+        //Sorts array by fitness value decending order
+        participents = participents.sort(function(a, b) {
+            return b.fitness - a.fitness
+        })
+
+        //Deep copying dot
+        let tempDot = new Dot(0, 0);
+        for (let vectorIndex in participents[0].Brain.dna) {
+            tempDot.Brain.dna[vectorIndex] = participents[0].Brain.dna[vectorIndex].copy();
+        }
+        MatingPool.push(tempDot);
+    }
+
+    console.timeEnd("TournamentSelection");
     return MatingPool;
 }
