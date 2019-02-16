@@ -16,21 +16,17 @@ function ProportionalSelection(Population) {
             indexArray.push(dot);
         }
     }
-
     //Randomly selects indexes from indexArray equal to the population size.
     let MatingPool = [];
     for (let i = 0; i < Settings.populationSize; i++) {
         //Selecting dot
         let rand = Math.floor(Math.random() * indexArray.length)
-        let selectedDotIndex = indexArray[rand];
-        let selectedDot = Population.Dots[selectedDotIndex];
+        let selectedDot = Population.Dots[indexArray[rand]];
 
         //Deep copying dot
-        //have to deep copy individual x/y coords of dna due to circular object?! and strangeness coppying p5js vector object.		
         let tempDot = new Dot(0, 0);
         for (let vectorIndex in selectedDot.Brain.dna) {
-            let vector = createVector(JSON.parse(JSON.stringify(selectedDot.Brain.dna[vectorIndex].x)), JSON.parse(JSON.stringify(selectedDot.Brain.dna[vectorIndex].y)));
-            tempDot.Brain.dna[vectorIndex] = vector;
+            tempDot.Brain.dna[vectorIndex] = selectedDot.Brain.dna[vectorIndex].copy();
         }
         MatingPool.push(tempDot);
     }
