@@ -76,7 +76,7 @@ function NewGeneration() {
     let MatingPool = ProportionalSelection(Generations[Generations.length - 1]);
     console.log('\tCompleted Selection');
 
-    let NewDots = OnePointCrossover(MatingPool);
+    let NewDots = NPointDiscreteCrossover(MatingPool, 1);
     console.log('\tCompleted Crossover');
 
     let MutatedNewDots = Mutation(NewDots)
