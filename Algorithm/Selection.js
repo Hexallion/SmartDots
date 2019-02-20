@@ -40,15 +40,15 @@ function RankingSelection(Population) {
     //Calculate fitnesses of population
     Population.CalculateFitness();
 
-    //Sorts array by fitness value decending order
+    //Sorts array by fitness value acending order
     Population.Dots = Population.Dots.sort(function(a, b) {
-        return b.fitness - a.fitness
+        return a.fitness - b.fitness
     });
 
-    //Adds dot's index to array equal to array length - dot's index
+    //Adds dot's index to array equal to dot's index
     let indexArray = [];
     for (let dot in Population.Dots) {
-        for (let g = 0; g < Population.Dots.length - dot; g++) {
+        for (let g = 0; g <= dot; g++) {
             indexArray.push(dot);
         }
     }
