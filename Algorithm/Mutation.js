@@ -6,20 +6,40 @@ Mutation functions, collection of different mutation styles
 */
 
 function Mutation(NewDots) {
-    for (let dot of NewDots) {
-        //For every dna vector
-        for (let geneIndex in dot.Brain.dna) {
-            //if random value is lower than mutation rate, mutate the dna
+    for (let dotIndex in NewDots) {
+        if (Settings.DotSpecificMutation) {
+            //if random value is lower than mutation rate, mutate the dot
             let rand = Math.random();
             if (rand < Settings.mutationRate) {
-                dot.Brain.dna[geneIndex] = GeneModification(dot.Brain.dna[geneIndex], 1, 0.5);
+                GeneMutation(NewDots[dotIndex]);
             }
+        }
+        else {
+            GeneMutation(NewDots[dotIndex])
         }
     }
     return NewDots;
 }
 
-function GeneModification(gene, currentMultiplyer, mutationMultiplyer) {
+function GeneMutation(dot) {
+    for (let geneIndex in dot.Brain.dna) {
+        if (Settings.GeneSpecificMutation) {
+            //if random value is lower than mutation rate, mutate the dot
+            let rand = Math.random();
+            if (rand < Settings.mutationRate) {
+                dot.Brain.dna[geneIndex] = GeneModification(dot.Brain.dna[geneIndex]);
+            }
+        }
+        else {
+            dot.Brain.dna[geneIndex] = GeneModification(dot.Brain.dna[geneIndex]);
+        }
+    }
+}
+
+function GeneModification(gene) {
+    let currentMultiplyer = Settings.currentMultiplyer;
+    let mutationMultiplyer = Settings.mutationMultiplyer;
+
     let mutation = p5.Vector.random2D();
     mutation.x = mutation.x * mutationMultiplyer;
     mutation.y = mutation.y * mutationMultiplyer;

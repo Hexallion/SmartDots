@@ -16,7 +16,6 @@ var Settings = {
     //Population settings
     populationSize: 100,
     lifeSpan: 250,
-    mutationRate: 0.5,
     //----------------------------------
 
     //Dot settings
@@ -38,6 +37,14 @@ var Settings = {
     obstacleY: 700 / 2 - 75,
     obstacleWidth: 300,
     obstacleHeight: 75,
-    obstacleColour: 'black'
+    obstacleColour: 'black',
+    //----------------------------------
+
+    //Mutation Settings
+    mutationRate: 0.5,
+    DotSpecificMutation: false,
+    GeneSpecificMutation: true,
+    currentMultiplyer: 1,
+    mutationMultiplyer: 0.5,
     //----------------------------------
 };
