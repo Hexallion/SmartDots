@@ -40,6 +40,10 @@ var Settings = {
     obstacleColour: 'black',
     //----------------------------------
 
+    //Selection Settings
+    tournamentParticipents: 10
+    //----------------------------------
+    
     //Mutation Settings
     mutationRate: 0.5,
     DotSpecificMutation: false,
