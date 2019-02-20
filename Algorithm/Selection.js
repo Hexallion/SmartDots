@@ -6,7 +6,6 @@ Selection functions, collection of different selection styles
 */
 
 function ProportionalSelection(Population) {
-    console.time("ProportionalSelection");
     //Calculate fitnesses of population
     Population.CalculateFitness();
 
@@ -31,12 +30,10 @@ function ProportionalSelection(Population) {
         }
         MatingPool.push(tempDot);
     }
-    console.timeEnd("ProportionalSelection");
     return MatingPool;
 }
 
 function RankingSelection(Population) {
-    console.time("RankingSelection");
     //Calculate fitnesses of population
     Population.CalculateFitness();
 
@@ -67,12 +64,10 @@ function RankingSelection(Population) {
         }
         MatingPool.push(tempDot);
     }
-    console.timeEnd("RankingSelection");
     return MatingPool;
 }
 
 function TournamentSelection(Population) {
-    console.time("TournamentSelection");
     //Calculate fitnesses of population
     Population.CalculateFitness();
 
@@ -96,7 +91,5 @@ function TournamentSelection(Population) {
         }
         MatingPool.push(tempDot);
     }
-
-    console.timeEnd("TournamentSelection");
     return MatingPool;
 }
