@@ -16,7 +16,6 @@ var Settings = {
     //Population settings
     populationSize: 100,
     lifeSpan: 250,
-    mutationRate: 0.5,
     //----------------------------------
 
     //Dot settings
@@ -43,5 +42,13 @@ var Settings = {
 
     //Selection Settings
     tournamentParticipents: 10
+    //----------------------------------
+    
+    //Mutation Settings
+    mutationRate: 0.5,
+    DotSpecificMutation: false,
+    GeneSpecificMutation: true,
+    currentMultiplyer: 1,
+    mutationMultiplyer: 0.5,
     //----------------------------------
 };
