@@ -73,10 +73,10 @@ function NextStep() {
 function NewGeneration() {
     console.log('Generating new generation');
 
-    let MatingPool = ProportionalSelection(Generations[Generations.length - 1]);
+    let MatingPool = Selection(Generations[Generations.length - 1]);
     console.log('\tCompleted Selection');
 
-    let NewDots = NPointDiscreteCrossover(MatingPool, 1);
+    let NewDots = NPointDiscreteCrossover(MatingPool);
     console.log('\tCompleted Crossover');
 
     let MutatedNewDots = Mutation(NewDots)

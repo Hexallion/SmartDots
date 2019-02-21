@@ -42,6 +42,11 @@ var Settings = {
 
     //Selection Settings
     tournamentParticipents: 10,
+    selectionType: "RankingSelection",
+    //----------------------------------
+
+    //Crossover settings
+    noCrossings: 1,
     //----------------------------------
 
     //Mutation Settings

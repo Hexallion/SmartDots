@@ -4,6 +4,24 @@ SmartDots Algorithm - By Peter Cresswell
 Selection
 Selection functions, collection of different selection styles
 */
+function Selection(Population) {
+    switch (Settings.selectionType) {
+        case "ProportionalSelection":
+            return ProportionalSelection(Population);
+            break;
+
+        case "RankingSelection":
+            return RankingSelection(Population);
+            break;
+
+        case "TournamentSelection":
+            return TournamentSelection(Population);
+            break;
+
+        default:
+            return ProportionalSelection(Population);
+    }
+}
 
 function ProportionalSelection(Population) {
     //Calculate fitnesses of population

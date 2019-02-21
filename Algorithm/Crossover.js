@@ -5,6 +5,7 @@ Crossover
 Crossover functions, collection of different corssover styles -> added n point discrete crossover, therfore all discrete crossover styles covered in one function.
 */
 
+/*
 function OnePointCrossover(MatingPool) {
     let NewDots = [];
     for (let firstDotIndex = 0; firstDotIndex < MatingPool.length; firstDotIndex += 2) {
@@ -22,11 +23,11 @@ function OnePointCrossover(MatingPool) {
     }
     return NewDots;
 }
+*/
 
-
-function NPointDiscreteCrossover(MatingPool, n) {
+function NPointDiscreteCrossover(MatingPool) {
     let NewDots = [];
-    let interval = Math.floor(Settings.lifeSpan / n + 1);
+    let interval = Math.floor(Settings.lifeSpan / Settings.noCrossings + 1);
 
     //Interates through dots selecting two parents each time
     for (let firstDotIndex = 0; firstDotIndex < MatingPool.length; firstDotIndex += 2) {
