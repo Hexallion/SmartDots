@@ -32,4 +32,15 @@ function Dot(startX, startY) {
     }
     //--------------------------------------------------------------------------------------------
 
+
+    //Saves data for dot -> only required data
+    this.SaveDot = function() {
+        var dot = {
+            Brain: this.Brain,
+            status: this.status,
+            fitness: this.fitness
+        }
+        return dot;
+    }
+    //--------------------------------------------------------------------------------------------
 }

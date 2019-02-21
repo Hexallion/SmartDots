@@ -8,11 +8,13 @@ Central script controlling the sketch
 //Setup the canvas
 function setup() {
     //Initialtes objects
-    Generations = [];
-    Generations.push(new Population(Settings.populationSize));
+    CurrentPopulation = new Population(Settings.populationSize);
+    generationNumber = 0;
+
     Goal = new Goal();
     Obstacles = new Obstacles();
 
+    SavedGenerations = [];
     //Setup canvas and other variables
     frameRate(Settings.fps);
     createCanvas(Settings.canWidth, Settings.canHeight);
@@ -30,7 +32,7 @@ function draw() {
     //--------------------------------------------------------------------------------------------
 
     //Draws all dots
-    for (let i of Generations[Generations.length - 1].Dots) {
+    for (let i of CurrentPopulation.Dots) {
         fill(i.dotColour);
         ellipse(i.PVector.x, i.PVector.y, Settings.dotRaidus, Settings.dotRaidus);
     }
@@ -47,7 +49,7 @@ function draw() {
     textSize(16);
     textStyle(BOLD);
     fill('black');
-    text("Generation: " + (Generations.length - 1), 0, 16);
+    text("Generation: " + generationNumber, 0, 16);
     //--------------------------------------------------------------------------------------------
 
     //Initiates next step
@@ -57,14 +59,17 @@ function draw() {
 
 //Dots make the next step, if at end of life, initiate new generation
 function NextStep() {
-    if (Generations[Generations.length - 1].currentStep < Settings.lifeSpan) {
-        Generations[Generations.length - 1].NextStep();
+    if (CurrentPopulation.currentStep < Settings.lifeSpan) {
+        CurrentPopulation.NextStep();
     }
     else {
-        if (Generations.length > 30) {
+        if (generationNumber > Settings.noGenerations) {
+            //console.log(JSON.stringify(SavedGenerations));
             location.reload();
         }
+        SaveCurrentPopulation();
         NewGeneration();
+        generationNumber++;
     }
 }
 //--------------------------------------------------------------------------------------------
@@ -73,7 +78,7 @@ function NextStep() {
 function NewGeneration() {
     console.log('Generating new generation');
 
-    let MatingPool = Selection(Generations[Generations.length - 1]);
+    let MatingPool = Selection(CurrentPopulation);
     console.log('\tCompleted Selection');
 
     let NewDots = NPointDiscreteCrossover(MatingPool);
@@ -82,30 +87,34 @@ function NewGeneration() {
     let MutatedNewDots = Mutation(NewDots)
     console.log('\tCompleted Mutation');
 
-    let NewGeneration = new Population();
-    NewGeneration.Dots = MutatedNewDots;
+    let NewPopulation = new Population();
+    NewPopulation.Dots = MutatedNewDots;
 
     //Adding Elitism
     {
         let bestFitness = 0;
         let bestDot;
-        for (let dot of Generations[Generations.length - 1].Dots) {
+        for (let dot of CurrentPopulation.Dots) {
             if (dot.fitness > bestFitness) {
                 bestFitness = dot.fitness;
                 bestDot = dot;
             }
         }
         bestDot.dotColour = 'yellow';
-        NewGeneration.Dots[NewGeneration.Dots.length - 1] = bestDot;
+        NewPopulation.Dots[Settings.populationSize - 1] = bestDot;
     }
 
     //Resetting dot values
-    NewGeneration.currentStep = 0;
-    for (let dot of NewGeneration.Dots) {
+    NewPopulation.currentStep = 0;
+    for (let dot of NewPopulation.Dots) {
         dot.PVector = new createVector(Settings.startX, Settings.startY);
         dot.VVector = new createVector(0, 0);
         dot.status = 'Alive';
     }
     console.log('\tFinnished resetting dot status')
-    Generations.push(NewGeneration);
+    CurrentPopulation = NewPopulation;
+}
+
+function SaveCurrentPopulation() {
+    SavedGenerations.push(CurrentPopulation.SavePopulation());
 }

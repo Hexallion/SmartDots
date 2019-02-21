@@ -16,6 +16,7 @@ var Settings = {
     //Population settings
     populationSize: 100,
     lifeSpan: 250,
+    noGenerations: 30,
     //----------------------------------
 
     //Dot settings

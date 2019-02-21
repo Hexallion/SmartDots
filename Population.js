@@ -69,4 +69,13 @@ function Population(populationSize) {
             }
         }
     }
+
+    this.SavePopulation = function() {
+        let population = [];
+        for (let dot of this.Dots) {
+            population.push(dot.SaveDot());
+        }
+
+        return population;
+    }
 }
