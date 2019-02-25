@@ -112,6 +112,8 @@ function NewGeneration() {
         dot.status = 'Alive';
     }
     console.log('\tFinnished resetting dot status')
+
+    NewPopulation = PopulationStyles(NewPopulation);
     CurrentPopulation = NewPopulation;
 }
 

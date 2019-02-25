@@ -17,6 +17,9 @@ var Settings = {
     populationSize: 100,
     lifeSpan: 250,
     noGenerations: 30,
+    sawtooth: false,
+    reduction: 2,
+    period: 10,
     //----------------------------------
 
     //Dot settings
