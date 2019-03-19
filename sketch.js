@@ -8,6 +8,8 @@ Central script controlling the sketch
 //Setup the canvas
 function setup() {
     //Initialtes objects
+    setupSettings();
+
     CurrentPopulation = new Population(Settings.populationSize);
     generationNumber = 0;
 
@@ -18,6 +20,21 @@ function setup() {
     //Setup canvas and other variables
     frameRate(Settings.fps);
     createCanvas(Settings.canWidth, Settings.canHeight);
+}
+//--------------------------------------------------------------------------------------------
+
+//Setup Settings -> use Session storage, if not use default
+function setupSettings() {
+    if(sessionStorage.Settings){
+        console.log("Session Settings exists!");
+        Settings = JSON.parse(sessionStorage.Settings);
+        //sessionStorage.clear();
+        console.log("Need to decide if we clear the session storage, if we do when the user reloads the page they will loose the settings that they setup on the previous page!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+
+    }
+    else{
+        console.log("Session Settings does not exist :(");
+    }
 }
 //--------------------------------------------------------------------------------------------
 
@@ -63,9 +80,10 @@ function NextStep() {
         CurrentPopulation.NextStep();
     }
     else {
-        if (generationNumber > Settings.noGenerations) {
+        if (generationNumber >= Settings.noGenerations) {
             //console.log(JSON.stringify(SavedGenerations));
-            location.reload();
+            //location.reload();
+            location = "../index.html";
         }
         SaveCurrentPopulation();
         NewGeneration();
