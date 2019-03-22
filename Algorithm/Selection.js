@@ -25,7 +25,7 @@ function Selection(Population) {
 
 function ProportionalSelection(Population) {
     //Calculate fitnesses of population
-    Population.CalculateFitness();
+    //Population.CalculateFitness();
 
     //Adds dot index to array proportional to their fitness
     let indexArray = [];
@@ -53,7 +53,7 @@ function ProportionalSelection(Population) {
 
 function RankingSelection(Population) {
     //Calculate fitnesses of population
-    Population.CalculateFitness();
+    //Population.CalculateFitness();
 
     //Sorts array by fitness value acending order
     Population.Dots = Population.Dots.sort(function(a, b) {
@@ -87,7 +87,7 @@ function RankingSelection(Population) {
 
 function TournamentSelection(Population) {
     //Calculate fitnesses of population
-    Population.CalculateFitness();
+    //Population.CalculateFitness();
 
     //Number of tournaments equal to the nuber of parents needed
     let MatingPool = [];

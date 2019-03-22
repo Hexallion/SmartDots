@@ -25,8 +25,9 @@ var Settings = {
     //Dot settings
     startX: 700 / 2,
     startY: 700 / 2 + 200,
-    dotRaidus: 10,
+    dotRadius: 10,
     dotColour: 'black',
+    bestDotColour: 'yellow',
     //----------------------------------
 
     //Goal Settings

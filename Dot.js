@@ -35,6 +35,7 @@ function Dot(startX, startY) {
 
     //Saves data for dot -> only required data
     this.SaveDot = function() {
+        this.Fitness();
         var dot = {
             Brain: this.Brain,
             status: this.status,

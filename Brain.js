@@ -12,7 +12,10 @@ function Brain(lifeSpan) {
 
     //Generates the random initial DNA
     for (let i = 0; i < lifeSpan; i++) {
-        this.dna.push(p5.Vector.random2D());
+		let newVector = p5.Vector.random2D()
+		newVector.x = parseFloat(newVector.x.toFixed(4));
+		newVector.y = parseFloat(newVector.y.toFixed(4));
+        this.dna.push(newVector);
     }
     //--------------------------------------------------------------------------------------------
 }

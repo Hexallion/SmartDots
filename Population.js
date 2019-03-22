@@ -26,6 +26,12 @@ function Population(populationSize) {
                     dot.ApplyForce(dot.Brain.dna[this.currentStep]);
                     break;
 
+                case 'Best':
+                    this.intersectsObstacles(dot);
+                    this.intersectsGoal(dot);
+                    dot.ApplyForce(dot.Brain.dna[this.currentStep]);
+                    break;
+
                 case 'Dead':
                     break;
 

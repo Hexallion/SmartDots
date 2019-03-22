@@ -40,14 +40,20 @@ function GeneModification(gene) {
     let currentMultiplyer = Settings.currentMultiplyer;
     let mutationMultiplyer = Settings.mutationMultiplyer;
 
-    let mutation = p5.Vector.random2D();
+    //Generate mutation
+	let mutation = p5.Vector.random2D();
     mutation.x = mutation.x * mutationMultiplyer;
     mutation.y = mutation.y * mutationMultiplyer;
+	
+	//truncate mutation
+	mutation.x = parseFloat(mutation.x.toFixed(4));
+	mutation.y = parseFloat(mutation.y.toFixed(4));
 
     let currentGene = gene.copy();
     currentGene.x = currentGene.x * currentMultiplyer;
     currentGene.y = currentGene.y * currentMultiplyer;
 
+	//add currentGene to mutation gene
     mutation.add(currentGene);
     return mutation;
 }

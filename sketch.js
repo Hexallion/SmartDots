@@ -51,7 +51,7 @@ function draw() {
     //Draws all dots
     for (let i of CurrentPopulation.Dots) {
         fill(i.dotColour);
-        ellipse(i.PVector.x, i.PVector.y, Settings.dotRaidus, Settings.dotRaidus);
+        ellipse(i.PVector.x, i.PVector.y, Settings.dotRadius, Settings.dotRadius);
     }
     //--------------------------------------------------------------------------------------------
 
@@ -81,9 +81,7 @@ function NextStep() {
     }
     else {
         if (generationNumber >= Settings.noGenerations) {
-            //console.log(JSON.stringify(SavedGenerations));
-            //location.reload();
-            location = "../index.html";
+			saveDemonstration();
         }
         SaveCurrentPopulation();
         NewGeneration();
@@ -118,7 +116,7 @@ function NewGeneration() {
                 bestDot = dot;
             }
         }
-        bestDot.dotColour = 'yellow';
+        bestDot.dotColour = Settings.bestDotColour;
         NewPopulation.Dots[Settings.populationSize - 1] = bestDot;
     }
 
@@ -127,9 +125,12 @@ function NewGeneration() {
     for (let dot of NewPopulation.Dots) {
         dot.PVector = new createVector(Settings.startX, Settings.startY);
         dot.VVector = new createVector(0, 0);
-        dot.status = 'Alive';
+        //dot.status = 'Alive';
     }
-    console.log('\tFinnished resetting dot status')
+    NewPopulation.Dots[Settings.populationSize - 1].status = 'Best';
+    //NewPopulation.Dots[Settings.populationSize - 1].color = Settings.bestDotColour;
+
+    console.log('\tFinnished resetting dot status');
 
     NewPopulation = PopulationStyles(NewPopulation);
     CurrentPopulation = NewPopulation;
@@ -137,4 +138,35 @@ function NewGeneration() {
 
 function SaveCurrentPopulation() {
     SavedGenerations.push(CurrentPopulation.SavePopulation());
+}
+
+function saveDemonstration(){
+	saveButton = createButton('Save and Exit');
+	let sButtonX = (Settings.canWidth - saveButton.width) / 2;
+	let sButtonY = (Settings.canHeight - saveButton.height) / 2;
+	saveButton.position(sButtonX, sButtonY);
+	saveButton.mousePressed(saveDemo);
+	
+	exitButton = createButton('Exit');
+	let eButtonX = (Settings.canWidth - exitButton.width) / 2;
+	let eButtonY = (Settings.canHeight + exitButton.height) / 2;
+	exitButton.position(eButtonX, eButtonY);
+	exitButton.mousePressed(exitDemo);
+	noLoop();
+}
+
+function saveDemo(){
+    let json = JSON.stringify(SavedGenerations);
+	console.log(json);
+    let host = window.location.host;
+    let protocol = window.location.protocol;
+    let url = protocol + "//" + host + "/saveResults";
+    //location.replace(url);
+    httpPost(url, 'json', json, function (result){console.log(result)});
+}
+
+function exitDemo(){
+	let host = window.location.host;
+	let protocol = window.location.protocol;
+	location.replace( protocol + "//" + host + "/index.html");
 }
