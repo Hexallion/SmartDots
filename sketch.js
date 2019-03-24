@@ -156,13 +156,22 @@ function saveDemonstration(){
 }
 
 function saveDemo(){
-    let json = JSON.stringify(SavedGenerations);
-	console.log(json);
     let host = window.location.host;
     let protocol = window.location.protocol;
     let url = protocol + "//" + host + "/saveResults";
-    //location.replace(url);
-    httpPost(url, 'json', json, function (result){console.log(result)});
+
+    httpDo(
+        url,
+        'POST',
+        'json',
+        Settings,
+        function (result){
+            console.log(result)
+        },
+        function (error) {
+            console.log(error);
+        }
+    )
 }
 
 function exitDemo(){
