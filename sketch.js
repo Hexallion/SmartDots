@@ -81,7 +81,7 @@ function NextStep() {
     }
     else {
         if (generationNumber >= Settings.noGenerations) {
-			saveDemonstration();
+			SaveDemonstration();
         }
         SaveCurrentPopulation();
         NewGeneration();
@@ -140,31 +140,36 @@ function SaveCurrentPopulation() {
     SavedGenerations.push(CurrentPopulation.SavePopulation());
 }
 
-function saveDemonstration(){
+function SaveDemonstration(){
 	saveButton = createButton('Save and Exit');
 	let sButtonX = (Settings.canWidth - saveButton.width) / 2;
 	let sButtonY = (Settings.canHeight - saveButton.height) / 2;
 	saveButton.position(sButtonX, sButtonY);
-	saveButton.mousePressed(saveDemo);
+	saveButton.mousePressed(SaveDemo);
 	
 	exitButton = createButton('Exit');
 	let eButtonX = (Settings.canWidth - exitButton.width) / 2;
 	let eButtonY = (Settings.canHeight + exitButton.height) / 2;
 	exitButton.position(eButtonX, eButtonY);
-	exitButton.mousePressed(exitDemo);
+	exitButton.mousePressed(ExitDemo);
 	noLoop();
 }
 
-function saveDemo(){
+function SaveDemo(){
     let host = window.location.host;
     let protocol = window.location.protocol;
     let url = protocol + "//" + host + "/saveResults";
+    let demonstration = {
+        //populations: SavedGenerations,
+        settings: Settings
+    };
 
+    //let data = demonstration.populations[0];
     httpDo(
         url,
         'POST',
         'json',
-        Settings,
+        demonstration,
         function (result){
             console.log(result)
         },
@@ -174,7 +179,7 @@ function saveDemo(){
     )
 }
 
-function exitDemo(){
+function ExitDemo(){
 	let host = window.location.host;
 	let protocol = window.location.protocol;
 	location.replace( protocol + "//" + host + "/index.html");

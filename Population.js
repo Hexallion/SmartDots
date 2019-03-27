@@ -77,9 +77,11 @@ function Population(populationSize) {
     }
 
     this.SavePopulation = function() {
-        let population = [];
+        let population = {
+            dots: []
+        };
         for (let dot of this.Dots) {
-            population.push(dot.SaveDot());
+            population.dots.push(dot.SaveDot());
         }
 
         return population;
