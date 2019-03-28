@@ -160,7 +160,7 @@ function SaveDemo(){
     let protocol = window.location.protocol;
     let url = protocol + "//" + host + "/saveResults";
     let demonstration = {
-        //populations: SavedGenerations,
+        populations: SavedGenerations,
         settings: Settings
     };
 
