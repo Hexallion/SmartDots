@@ -14,9 +14,9 @@ var Settings = {
     //----------------------------------
 
     //Population settings
-    populationSize: 100,
-    lifeSpan: 250,
-    noGenerations: 30,
+    populationSize: 2,
+    lifeSpan: 1,
+    noGenerations: 1,
     sawtooth: false,
     reduction: 2,
     period: 10,
@@ -47,7 +47,7 @@ var Settings = {
 
     //Selection Settings
     tournamentParticipents: 10,
-    selectionType: "RankingSelection",
+    selectionType: "ProportionalSelection",
     //----------------------------------
 
     //Crossover settings

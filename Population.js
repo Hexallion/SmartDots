@@ -10,6 +10,8 @@ function Population(populationSize) {
     //Sets up the population with a population of dots
     this.Dots = [];
     this.currentStep = 0;
+	this.noDead = 0;
+	this.noReachedGoal = 0;
     //Generates the array of dots
     for (let i = 0; i < populationSize; i++) {
         this.Dots.push(new Dot(Settings.startX, Settings.startY));
@@ -18,6 +20,8 @@ function Population(populationSize) {
 
     //Applys the next dna action
     this.NextStep = function() {
+		this.noDead = 0;
+		this.noReachedGoal = 0;
         for (let dot of this.Dots) {
             switch (dot.status) {
                 case 'Alive':
@@ -33,9 +37,11 @@ function Population(populationSize) {
                     break;
 
                 case 'Dead':
+					this.noDead++;
                     break;
 
                 case 'Goal':
+					this.noReachedGoal++;
                     break;
             }
         }
@@ -78,12 +84,13 @@ function Population(populationSize) {
 
     this.SavePopulation = function() {
         let population = {
-            dots: []
+            dots: [],
+			noDead: this.noDead,
+			noReachedGoal: this.noReachedGoal
         };
         for (let dot of this.Dots) {
             population.dots.push(dot.SaveDot());
         }
-
         return population;
     }
 }

@@ -66,7 +66,11 @@ function draw() {
     textSize(16);
     textStyle(BOLD);
     fill('black');
-    text("Generation: " + generationNumber, 0, 16);
+    text("Generation: " + generationNumber, 5, 20);
+	textAlign(RIGHT, BOTTOM);
+	text("Number Dead: " + CurrentPopulation.noDead, Settings.canWidth - 20, Settings.canHeight);
+	textAlign(LEFT, BOTTOM);
+	text("Number Reached Goal: " + CurrentPopulation.noReachedGoal, 5, Settings.canHeight);
     //--------------------------------------------------------------------------------------------
 
     //Initiates next step
@@ -161,9 +165,10 @@ function SaveDemo(){
     let url = protocol + "//" + host + "/saveResults";
     let demonstration = {
         populations: SavedGenerations,
-        settings: Settings
+        settings: Settings,
+		//id: 1
     };
-
+    console.log(url);
     //let data = demonstration.populations[0];
     httpDo(
         url,
@@ -171,10 +176,14 @@ function SaveDemo(){
         'json',
         demonstration,
         function (result){
-            console.log(result)
+            sessionStorage.clear();
+            sessionStorage.setItem("demoId", result);
+            location.href = (protocol + "//" + host);
         },
         function (error) {
+			//sessionStorage.setItem("demo", JSON.stringify(demonstration));
             console.log(error);
+			location.href = ("../index.html");
         }
     )
 }
@@ -182,5 +191,5 @@ function SaveDemo(){
 function ExitDemo(){
 	let host = window.location.host;
 	let protocol = window.location.protocol;
-	location.replace( protocol + "//" + host + "/index.html");
+	location.href = ( protocol + "//" + host);
 }
