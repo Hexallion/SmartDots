@@ -168,8 +168,6 @@ function SaveDemo(){
         settings: Settings,
 		//id: 1
     };
-    console.log(url);
-    //let data = demonstration.populations[0];
     httpDo(
         url,
         'POST',
@@ -181,7 +179,6 @@ function SaveDemo(){
             location.href = (protocol + "//" + host);
         },
         function (error) {
-			//sessionStorage.setItem("demo", JSON.stringify(demonstration));
             console.log(error);
 			location.href = ("../index.html");
         }

@@ -10,13 +10,13 @@ var Settings = {
     canWidth: 700,
     canHeight: 700,
     canColour: 'grey',
-    fps: 50,
+    fps: 60,
     //----------------------------------
 
     //Population settings
-    populationSize: 2,
-    lifeSpan: 1,
-    noGenerations: 1,
+    populationSize: 100,
+    lifeSpan: 250,
+    noGenerations: 30,
     sawtooth: false,
     reduction: 2,
     period: 10,

@@ -83,14 +83,22 @@ function Population(populationSize) {
     }
 
     this.SavePopulation = function() {
+		let bestDot = this.BestDot();
         let population = {
-            dots: [],
+            bestDotDna: bestDot.Brain.dna,
+			bestDotFitness: bestDot.fitness,
 			noDead: this.noDead,
 			noReachedGoal: this.noReachedGoal
         };
-        for (let dot of this.Dots) {
-            population.dots.push(dot.SaveDot());
-        }
         return population;
+    }
+
+    this.BestDot = function () {
+        let bestDotIndex = 0;
+        for(let i in this.Dots){
+			this.Dots[i].Fitness();
+            if(this.Dots[bestDotIndex].fitness < this.Dots[i].fitness){bestDotIndex = i;}
+        }
+        return this.Dots[bestDotIndex];
     }
 }
