@@ -28,9 +28,6 @@ function setupSettings() {
     if(sessionStorage.Settings){
         console.log("Session Settings exists!");
         Settings = JSON.parse(sessionStorage.Settings);
-        //sessionStorage.clear();
-        console.log("Need to decide if we clear the session storage, if we do when the user reloads the page they will loose the settings that they setup on the previous page!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-
     }
     else{
         console.log("Session Settings does not exist :(");
@@ -104,7 +101,7 @@ function NewGeneration() {
     let NewDots = NPointDiscreteCrossover(MatingPool);
     console.log('\tCompleted Crossover');
 
-    let MutatedNewDots = Mutation(NewDots)
+    let MutatedNewDots = Mutation(NewDots);
     console.log('\tCompleted Mutation');
 
     let NewPopulation = new Population();
