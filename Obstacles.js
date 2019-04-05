@@ -1,5 +1,5 @@
 /*
-SmartDots Algorithm - By Peter Cresswell
+Project Caerus - By Peter Cresswell
 
 Obstacles
 Obstacles Object, collection of all Obstacles

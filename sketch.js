@@ -1,5 +1,5 @@
 /*
-SmartDots Algorithm - By Peter Cresswell
+Project Caerus - By Peter Cresswell
 
 sketch
 Central script controlling the sketch
@@ -136,11 +136,15 @@ function NewGeneration() {
     NewPopulation = PopulationStyles(NewPopulation);
     CurrentPopulation = NewPopulation;
 }
+//--------------------------------------------------------------------------------------------
 
+//pushed current population onto the SavedGenerations list
 function SaveCurrentPopulation() {
     SavedGenerations.push(CurrentPopulation.SavePopulation());
 }
+//--------------------------------------------------------------------------------------------
 
+//Displays the save/ exit buttons
 function SaveDemonstration(){
 	saveButton = createButton('Save and Exit');
 	let sButtonX = (Settings.canWidth - saveButton.width) / 2;
@@ -155,7 +159,9 @@ function SaveDemonstration(){
 	exitButton.mousePressed(ExitDemo);
 	noLoop();
 }
+//--------------------------------------------------------------------------------------------
 
+//saves the demonstration to the server and goes back to the main page.
 function SaveDemo(){
     let host = window.location.host;
     let protocol = window.location.protocol;
@@ -165,6 +171,8 @@ function SaveDemo(){
         settings: Settings,
 		//id: 1
     };
+
+    //POST request to server
     httpDo(
         url,
         'POST',
@@ -176,14 +184,19 @@ function SaveDemo(){
             location.href = (protocol + "//" + host);
         },
         function (error) {
+            //If error then save to sessions storage so user can still see results
             console.log(error);
+            sessionStorage.setItem("demo", demonstration);
 			location.href = ("../index.html");
         }
     )
 }
+//--------------------------------------------------------------------------------------------
 
+//Exits back to main page
 function ExitDemo(){
 	let host = window.location.host;
 	let protocol = window.location.protocol;
 	location.href = ( protocol + "//" + host);
 }
+//--------------------------------------------------------------------------------------------

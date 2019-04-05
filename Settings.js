@@ -1,5 +1,5 @@
 /*
-SmartDots Algorithm - By Peter Cresswell
+Project Caerus - By Peter Cresswell
 
 Settings
 Static object containing the settings.

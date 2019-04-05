@@ -1,5 +1,5 @@
 /*
-SmartDots Algorithm - By Peter Cresswell
+Project Caerus - By Peter Cresswell
 
 Population
 Population Object, The container which contains all of the individual dots
@@ -18,7 +18,7 @@ function Population(populationSize) {
     }
     //--------------------------------------------------------------------------------------------
 
-    //Applys the next dna action
+    //Apply the next dna action
     this.NextStep = function() {
 		this.noDead = 0;
 		this.noReachedGoal = 0;
@@ -47,7 +47,7 @@ function Population(populationSize) {
         }
         this.currentStep++;
         //console.log(this.currentStep);
-    }
+    };
     //--------------------------------------------------------------------------------------------
 
     //Calculates the fitness of all dots at the end of their life
@@ -55,9 +55,10 @@ function Population(populationSize) {
         for (let dot of this.Dots) {
             dot.Fitness();
         }
-    }
+    };
     //--------------------------------------------------------------------------------------------
 
+    //Detects is dot has intersected with the goal
     this.intersectsGoal = function(Dot) {
         if (Dot.PVector.x > Goal.goalVector.x && Dot.PVector.x < Goal.goalVector.x + Goal.goalSize) {
             //check if within y bounds
@@ -66,8 +67,10 @@ function Population(populationSize) {
                 Dot.dotColour = 'green';
             }
         }
-    }
+    };
+    //--------------------------------------------------------------------------------------------
 
+    //Detects is dot has intersected with any obstacles
     this.intersectsObstacles = function(Dot) {
         //For every obstacle
         for (let obstacle of Obstacles.obstacles) {
@@ -80,8 +83,10 @@ function Population(populationSize) {
                 }
             }
         }
-    }
+    };
+    //--------------------------------------------------------------------------------------------
 
+    //Saves the best dot to the population - only saving one dot due to storage management
     this.SavePopulation = function() {
 		let bestDot = this.BestDot();
         let population = {
@@ -91,8 +96,10 @@ function Population(populationSize) {
 			noReachedGoal: this.noReachedGoal
         };
         return population;
-    }
+    };
+    //--------------------------------------------------------------------------------------------
 
+    //finds best dot of the population
     this.BestDot = function () {
         let bestDotIndex = 0;
         for(let i in this.Dots){
@@ -101,4 +108,6 @@ function Population(populationSize) {
         }
         return this.Dots[bestDotIndex];
     }
+    //--------------------------------------------------------------------------------------------
+
 }

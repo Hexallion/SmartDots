@@ -1,9 +1,10 @@
 /*
-SmartDots Algorithm - By Peter Cresswell
+Project Caerus - By Peter Cresswell
 
 Selection
 Selection functions, collection of different selection styles
 */
+//Selects what Selection process is to be used - default is proportional
 function Selection(Population) {
     switch (Settings.selectionType) {
         case "ProportionalSelection":
@@ -22,7 +23,9 @@ function Selection(Population) {
             return ProportionalSelection(Population);
     }
 }
+//--------------------------------------------------------------------------------------------
 
+//Selects dots directly proportional to their fitness
 function ProportionalSelection(Population) {
     //Calculate fitnesses of population
     //Population.CalculateFitness();
@@ -38,7 +41,7 @@ function ProportionalSelection(Population) {
     let MatingPool = [];
     for (let i = 0; i < Settings.populationSize; i++) {
         //Selecting dot
-        let rand = Math.floor(Math.random() * indexArray.length)
+        let rand = Math.floor(Math.random() * indexArray.length);
         let selectedDot = Population.Dots[indexArray[rand]];
 
         //Deep copying dot
@@ -48,9 +51,26 @@ function ProportionalSelection(Population) {
         }
         MatingPool.push(tempDot);
     }
+
+    //if odd number of make Mating pool even - required with crossover parents
+    if((Settings.populationSize % 2) !== 0){
+        //Selecting dot
+        let rand = Math.floor(Math.random() * indexArray.length);
+        let selectedDot = Population.Dots[indexArray[rand]];
+
+        //Deep copying dot
+        let tempDot = new Dot(0, 0);
+        for (let vectorIndex in selectedDot.Brain.dna) {
+            tempDot.Brain.dna[vectorIndex] = selectedDot.Brain.dna[vectorIndex].copy();
+        }
+        MatingPool.push(tempDot);
+    }
+
     return MatingPool;
 }
+//--------------------------------------------------------------------------------------------
 
+//Selects Dots proportional to their ranking (index value after sorted by fitness)
 function RankingSelection(Population) {
     //Calculate fitnesses of population
     //Population.CalculateFitness();
@@ -72,7 +92,7 @@ function RankingSelection(Population) {
     let MatingPool = [];
     for (let i = 0; i < Settings.populationSize; i++) {
         //Selecting dot
-        let rand = Math.floor(Math.random() * indexArray.length)
+        let rand = Math.floor(Math.random() * indexArray.length);
         let selectedDot = Population.Dots[indexArray[rand]];
 
         //Deep copying dot
@@ -84,12 +104,15 @@ function RankingSelection(Population) {
     }
     return MatingPool;
 }
+//--------------------------------------------------------------------------------------------
 
+//Selects dots using rounds of tournaments
+//In each tournament a random selections of dots are used and the best of said selection is used for the next generation
 function TournamentSelection(Population) {
     //Calculate fitnesses of population
     //Population.CalculateFitness();
 
-    //Number of tournaments equal to the nuber of parents needed
+    //Number of tournaments equal to the number of parents needed
     let MatingPool = [];
     for (let i = 0; i < Settings.populationSize; i++) {
         let participents = [];
@@ -100,7 +123,7 @@ function TournamentSelection(Population) {
         //Sorts array by fitness value decending order
         participents = participents.sort(function(a, b) {
             return b.fitness - a.fitness
-        })
+        });
 
         //Deep copying dot
         let tempDot = new Dot(0, 0);
@@ -111,3 +134,4 @@ function TournamentSelection(Population) {
     }
     return MatingPool;
 }
+//--------------------------------------------------------------------------------------------

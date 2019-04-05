@@ -1,12 +1,14 @@
 /*
-SmartDots Algorithm - By Peter Cresswell
+Project Caerus - By Peter Cresswell
 
 Mutation
 Mutation functions, collection of different mutation styles
 */
 
+//Selects Mutation method to be used
 function Mutation(NewDots) {
     for (let dotIndex in NewDots) {
+        //Dot specific - only certain dots get mutated, otherwise all do
         if (Settings.DotSpecificMutation) {
             //if random value is lower than mutation rate, mutate the dot
             let rand = Math.random();
@@ -20,9 +22,12 @@ function Mutation(NewDots) {
     }
     return NewDots;
 }
+//--------------------------------------------------------------------------------------------
 
+//applies gene mutation
 function GeneMutation(dot) {
     for (let geneIndex in dot.Brain.dna) {
+        //geneSpecific only specific genes get modified, otherwise all do
         if (Settings.GeneSpecificMutation) {
             //if random value is lower than mutation rate, mutate the dot
             let rand = Math.random();
@@ -35,7 +40,9 @@ function GeneMutation(dot) {
         }
     }
 }
+//--------------------------------------------------------------------------------------------
 
+//Modifies dots gene
 function GeneModification(gene) {
     let currentMultiplyer = Settings.currentMultiplyer;
     let mutationMultiplyer = Settings.mutationMultiplyer;
@@ -57,3 +64,4 @@ function GeneModification(gene) {
     mutation.add(currentGene);
     return mutation;
 }
+//--------------------------------------------------------------------------------------------

@@ -1,5 +1,5 @@
 /*
-SmartDots Algorithm - By Peter Cresswell
+Project Caerus - By Peter Cresswell
 
 Dot
 Dot Object, The object that learns
@@ -22,7 +22,7 @@ function Dot(startX, startY) {
         this.VVector.add(this.AVector);
         this.VVector.limit(5);
         this.PVector.add(this.VVector);
-    }
+    };
     //--------------------------------------------------------------------------------------------
 
     //Calculates the fitness of the dot.
@@ -32,7 +32,7 @@ function Dot(startX, startY) {
     }
     //--------------------------------------------------------------------------------------------
 
-
+    /* Not used use to only single best dot being saved
     //Saves data for dot -> only required data
     this.SaveDot = function() {
         this.Fitness();
@@ -44,4 +44,5 @@ function Dot(startX, startY) {
         return dot;
     }
     //--------------------------------------------------------------------------------------------
+    */
 }
