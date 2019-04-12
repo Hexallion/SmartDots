@@ -46,7 +46,7 @@ var Settings = {
     //----------------------------------
 
     //Selection Settings
-    tournamentParticipents: 10,
+    tournamentParticipants: 10,
     selectionType: "ProportionalSelection",
     //----------------------------------
 
@@ -58,7 +58,7 @@ var Settings = {
     mutationRate: 0.5,
     DotSpecificMutation: false,
     GeneSpecificMutation: true,
-    currentMultiplyer: 1,
-    mutationMultiplyer: 0.5,
+    currentMultiplier: 1,
+    mutationMultiplier: 0.5,
     //----------------------------------
 };

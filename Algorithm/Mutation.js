@@ -44,8 +44,8 @@ function GeneMutation(dot) {
 
 //Modifies dots gene
 function GeneModification(gene) {
-    let currentMultiplyer = Settings.currentMultiplyer;
-    let mutationMultiplyer = Settings.mutationMultiplyer;
+    let currentMultiplyer = Settings.currentMultiplier;
+    let mutationMultiplyer = Settings.mutationMultiplier;
 
     //Generate mutation
 	let mutation = p5.Vector.random2D();

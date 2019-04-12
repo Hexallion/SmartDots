@@ -116,7 +116,7 @@ function TournamentSelection(Population) {
     let MatingPool = [];
     for (let i = 0; i < Settings.populationSize; i++) {
         let participents = [];
-        for (let i = 0; i < Settings.tournamentParticipents; i++) {
+        for (let i = 0; i < Settings.tournamentParticipants; i++) {
             participents.push(Population.Dots[Math.floor(Math.random() * Population.Dots.length)]);
         }
 

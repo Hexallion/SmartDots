@@ -81,12 +81,14 @@ function NextStep() {
         CurrentPopulation.NextStep();
     }
     else {
+        SaveCurrentPopulation();
         if (generationNumber >= Settings.noGenerations) {
 			SaveDemonstration();
         }
-        SaveCurrentPopulation();
-        NewGeneration();
-        generationNumber++;
+        else {
+            NewGeneration();
+            generationNumber++;
+        }
     }
 }
 //--------------------------------------------------------------------------------------------
@@ -146,15 +148,15 @@ function SaveCurrentPopulation() {
 
 //Displays the save/ exit buttons
 function SaveDemonstration(){
-	saveButton = createButton('Save and Exit');
-	let sButtonX = (Settings.canWidth - saveButton.width) / 2;
-	let sButtonY = (Settings.canHeight - saveButton.height) / 2;
+	saveButton = createButton('Save and Exit', "save");
+	let sButtonX = (Settings.canWidth - saveButton.elt.offsetWidth) / 2;
+	let sButtonY = (Settings.canHeight / 2 - saveButton.elt.offsetHeight);
 	saveButton.position(sButtonX, sButtonY);
 	saveButton.mousePressed(SaveDemo);
 	
-	exitButton = createButton('Exit');
-	let eButtonX = (Settings.canWidth - exitButton.width) / 2;
-	let eButtonY = (Settings.canHeight + exitButton.height) / 2;
+	exitButton = createButton('Exit', "exit");
+	let eButtonX = (Settings.canWidth - exitButton.elt.offsetWidth) / 2;
+	let eButtonY = (Settings.canHeight) / 2;
 	exitButton.position(eButtonX, eButtonY);
 	exitButton.mousePressed(ExitDemo);
 	noLoop();
@@ -163,6 +165,13 @@ function SaveDemonstration(){
 
 //saves the demonstration to the server and goes back to the main page.
 function SaveDemo(){
+    //Disables save button and displays that the demo is saving.
+    saveButton.mousePressed(false);
+    saveButton.elt.textContent = "Saving... This may take up to a minute...";
+    let sButtonX = (Settings.canWidth - saveButton.elt.offsetWidth) / 2;
+    let sButtonY = (Settings.canHeight / 2 - saveButton.elt.offsetHeight);
+    saveButton.position(sButtonX, sButtonY);
+
     let host = window.location.host;
     let protocol = window.location.protocol;
     let url = protocol + "//" + host + "/saveResults";
@@ -171,7 +180,6 @@ function SaveDemo(){
         settings: Settings,
 		//id: 1
     };
-
     //POST request to server
     httpDo(
         url,
